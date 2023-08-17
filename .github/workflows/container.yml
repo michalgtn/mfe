@@ -19,6 +19,8 @@ jobs:
       - uses: actions/checkout@v2
       - run: npm install
       - run: npm run build
+        with: 
+          production-name: ${{ secrets.PRODUCTION_NAME }}
 
       - name: Setup AWS CLI
         uses: aws-actions/configure-aws-credentials@v1

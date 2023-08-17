@@ -28,5 +28,6 @@ jobs:
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
       - name: Sync files to S3 bucket
         run: aws s3 sync dist s3://mfemike-dashboard/marketing/latest
-
+      - name: Invalidate file
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/marketing/latest/remoteEntry.js"
 # ${{ secrets.AWS_S3_BUCKET_NAME }}
